@@ -5,7 +5,7 @@ const app = express();
 require('dotenv').config();
 
 const corsOptions ={
-    origin:'https://inverted-index-generator.verce.app', 
+    origin:'https://inverted-index-generator.vercel.app', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
