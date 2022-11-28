@@ -3,6 +3,21 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
+const corsOpts = {
+    origin: '*',
+  
+    methods: [
+      'GET',
+      'POST',
+    ],
+  
+    allowedHeaders: [
+      'Content-Type',
+    ],
+  };
+  
+  app.use(cors(corsOpts));
+
 const PORT = process.env.PORT || 3000;
 
 async function datainsert(USERNAME, PASSWORD, UPDATE){
