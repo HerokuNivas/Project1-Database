@@ -4,7 +4,12 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 const PORT = process.env.PORT || 3000;
 
 async function datainsert(USERNAME, PASSWORD, UPDATE){
@@ -41,7 +46,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, function (err) {
     if (err) console.log("Error is" + err);
 }); 
-
-app.use(cors());
 
 module.exports = app;
