@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const cors = require("cors");
 const express = require('express');
 const app = express();
 require('dotenv').config();
@@ -41,12 +42,6 @@ app.listen(PORT, function (err) {
     if (err) console.log("Error is" + err);
 }); 
 
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
+app.use(cors());
 
 module.exports = app;
