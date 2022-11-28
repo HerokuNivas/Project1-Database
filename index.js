@@ -3,20 +3,6 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-const corsOpts = {
-    origin: '*',
-  
-    methods: [
-      'GET',
-      'POST',
-    ],
-  
-    allowedHeaders: [
-      'Content-Type',
-    ],
-  };
-  
-  app.use(cors(corsOpts));
 
 const PORT = process.env.PORT || 3000;
 
@@ -54,5 +40,13 @@ app.get('/', (req, res) => {
 app.listen(PORT, function (err) {
     if (err) console.log("Error is" + err);
 }); 
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 module.exports = app;
