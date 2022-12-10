@@ -1,11 +1,17 @@
+const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
 const cors = require("cors");
 const express = require('express');
 const app = express();
 require('dotenv').config();
 
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const corsOptions ={
-    origin:'https://inverted-index-generator.vercel.app', 
+    origin:'https://inverted-index-generator.vercel.app',
+    // origin: 'http://localhost:3001', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
@@ -41,6 +47,12 @@ app.get('/', (req, res) => {
     const PASSWORD = process.env.PASS;
     datainsert(USERNAME, PASSWORD, req.query.update).then(function(result){res.send({"status":result})});
     
+})
+
+app.post('/', (req, res) => {
+    const USERNAME = process.env.NAME;
+    const PASSWORD = process.env.PASS;
+    datainsert(USERNAME, PASSWORD, req.body.update).then(function(result){res.send({"status":result})});
 })
 
 app.listen(PORT, function (err) {
