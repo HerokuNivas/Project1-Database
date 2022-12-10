@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions ={
-    // origin:'https://inverted-index-generator.vercel.app',
-    origin: 'http://localhost:3001', 
+    origin:'https://inverted-index-generator.vercel.app',
+    // origin: 'http://localhost:3001', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
